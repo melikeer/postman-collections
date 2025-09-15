@@ -1,0 +1,120 @@
+{
+	"info": {
+		"_postman_id": "6ac7e7ca-5905-44b8-a518-cde658d4ab0f",
+		"name": "CargoSensor",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2477587"
+	},
+	"item": [
+		{
+			"name": "Send Sample Cargo Sensor Event",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc1Nzk0NDk0MiwiZXhwIjoxNzU3OTQ4NTQyfQ._5NV5jM7Llk113O4_h_3Oxe48ZcYq37Xn3Q9HOKxHZE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"TK01\",\n    \"type\": \"CargoSensor\",\n    \"temperature\": 18.5,\n    \"airPressure\": 101325.00,\n    \"humidity\": 55.5,\n    \"lightLevel\": 30000.0,\n    \"cargoWeight\": 1500.75,\n    \"batteryCharge\": 80.5,\n    \"batteryVoltage\": 24.5,\n    \"status_changes\": [\n        {\n            \"device_id\": \"tk-12345-67890\",\n            \"aircraft_id\": \"tk-12345-67890987\",\n            \"aircraft_type\": \"A330\",\n            \"cargo_type\": [\n                \"perishable\"\n            ],\n            \"event_type\": \"loaded\",\n            \"event_type_reason\": \"scheduled_loading\",\n            \"event_time\": 1757939100,\n            \"event_location\": {\n                \"geometry\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        29.9792,\n                        31.1342\n                    ]\n                }\n            }\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/cargo/sensor/events",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cargo",
+						"sensor",
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Device Id Location History",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc1Nzk0NDk0MiwiZXhwIjoxNzU3OTQ4NTQyfQ._5NV5jM7Llk113O4_h_3Oxe48ZcYq37Xn3Q9HOKxHZE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/devices/tk-12345-67890/locations?from=2025-09-15T09:00:00Z&to=2025-09-15T12:44:00Z",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"devices",
+						"tk-12345-67890",
+						"locations"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "2025-09-15T09:00:00Z"
+						},
+						{
+							"key": "to",
+							"value": "2025-09-15T12:44:00Z"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"verystrongpassword\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
